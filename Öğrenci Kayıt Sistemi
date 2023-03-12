@@ -1,0 +1,75 @@
+class StudenRegSystem():
+    def __init__(self):
+        self.ogrliste = []
+
+    def addogr(self):
+        isimsoyisim = input("İsim soyisim giriniz: ")
+        if isimsoyisim in self.ogrliste:
+            print("Bu öğrenci zaten listede var.")
+        else:
+            self.ogrliste.append(isimsoyisim)
+            self.print_number(isimsoyisim)
+        print("Öğrenci listesi:", self.ogrliste)
+        self.menu()
+
+    def removeogr(self):
+        silogr = input("Silinecek öğrencinin ismini soyismini giriniz: ")
+        if silogr in self.ogrliste:
+            self.ogrliste.remove(silogr)
+            print(self.ogrliste)
+        self.menu()
+
+    def add_multiple_ogr(self):
+        countadd = int(input("Kaç öğrenci ekleyeceksin : "))
+        ogrler = []  # eklenen öğrencilerin listesi
+        for i in range(countadd):
+            isimsoyisim = input("İsim soyisim giriniz: ")
+            if isimsoyisim in self.ogrliste:
+                print("Bu öğrenci zaten listede var.")
+            else:
+                ogrler.append(isimsoyisim)
+        self.ogrliste += ogrler
+        for ogr in ogrler:
+            self.print_number(ogr)
+        print("Öğrenci listesi:", self.ogrliste)
+        self.menu()
+
+    def print_number(self,ogr):
+        print(f"{self.ogrliste.index(ogr)} numaralı öğrenci: {ogr}")
+
+    def remove_multiple_ogr(self):
+        countremove = int(input("Kaç Öğrenci sileceksin :"))
+        silinecekler = []  # silinecek öğrencilerin listesi
+        for i in range(countremove):
+            silogr = input("Silinecek öğrencinin ismini soyismini giriniz: ")
+            if silogr in self.ogrliste:
+                silinecekler.append(silogr)
+            else:
+                print("Bu öğrenci listede yok.")
+        self.ogrliste = [ogr for ogr in self.ogrliste if ogr not in silinecekler]
+        print("Öğrenci listesi:", self.ogrliste)
+        self.menu()
+
+    def menu(self):
+        secim = input("1.öğrenci ekle\n"
+              "2.çoklu öğrenci ekle\n"
+              "3.öğrenci sil\n"
+              "4.çoklu öğrenci sil\n"
+                      "secim: ")
+        print(secim)
+        if int(secim)==1:
+            self.addogr()
+        elif int(secim)==2:
+            self.add_multiple_ogr()
+        elif int(secim)==3:
+            self.removeogr()
+        elif int(secim)==4:
+            self.remove_multiple_ogr()
+        else:
+            pass
+def main():
+    a = StudenRegSystem()
+    a.menu()
+
+if __name__ == '__main__':
+    main()
