@@ -51,22 +51,29 @@ class StudenRegSystem():
         self.menu()
 
     def menu(self):
-        secim = input("1.öğrenci ekle\n"
-              "2.çoklu öğrenci ekle\n"
-              "3.öğrenci sil\n"
-              "4.çoklu öğrenci sil\n"
-                      "secim: ")
-        print(secim)
-        if int(secim)==1:
-            self.addogr()
-        elif int(secim)==2:
-            self.add_multiple_ogr()
-        elif int(secim)==3:
-            self.removeogr()
-        elif int(secim)==4:
-            self.remove_multiple_ogr()
-        else:
-            pass
+        while True:
+            secim = input("1.öğrenci ekle\n"
+                  "2.çoklu öğrenci ekle\n"
+                  "3.öğrenci sil\n"
+                  "4.çoklu öğrenci sil\n"
+                          "secim: ")
+
+            if secim.isdigit():
+                if int(secim) == 1:
+                    self.addogr()
+                elif int(secim) == 2:
+                    self.add_multiple_ogr()
+                elif int(secim) == 3:
+                    self.removeogr()
+                elif int(secim) == 4:
+                    self.remove_multiple_ogr()
+            else:
+                if secim == "Q" or secim == "q":
+                    break
+                else:
+                    print("Hatalı seçim. Tekrar deneyin.")
+
+
 def main():
     a = StudenRegSystem()
     a.menu()
